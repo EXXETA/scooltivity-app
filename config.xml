@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget id="com.ionicframework.scooltivityapp548654" version="0.0.1"
+	xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+	<name>scooltivity-app</name>
+	<description>
+		An Ionic Framework and Cordova project.
+	</description>
+	<author email="hi@ionicframework" href="http://ionicframework.com/">
+		Ionic Framework Team
+	</author>
+	<content src="index.html" />
+	<access origin="*" />
+	<preference name="webviewbounce" value="false" />
+	<preference name="UIWebViewBounce" value="false" />
+	<preference name="DisallowOverscroll" value="true" />
+	<preference name="android-minSdkVersion" value="16" />
+	<preference name="BackupWebStorage" value="none" />
+	<feature name="StatusBar">
+		<param name="ios-package" value="CDVStatusBar" onload="true" />
+		<param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+		<param name="onload" value="true" />
+		<param name="wp-package" value="StatusBar" />
+		<param name="id" value="cordova-plugin-statusbar" />
+		<param name="version" value="1.0.1" />
+	</feature>
+	<feature name="Console">
+		<param name="ios-package" value="CDVLogger" />
+		<param name="wp-package" value="DebugConsole" />
+		<param name="id" value="cordova-plugin-console" />
+		<param name="version" value="1.0.1" />
+	</feature>
+	<feature name="Device">
+		<param name="android-package" value="org.apache.cordova.device.Device" />
+		<param name="ios-package" value="CDVDevice" />
+		<param name="wp-package" value="Device" />
+		<param name="id" value="cordova-plugin-device" />
+		<param name="version" value="1.0.1" />
+	</feature>
+	<feature name="SplashScreen">
+		<param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+		<param name="onload" value="true" />
+		<param name="ios-package" value="CDVSplashScreen" />
+		<param name="wp-package" value="SplashScreen" />
+	</feature>
+	<feature name="Splashscreen">
+		<param name="id" value="cordova-plugin-splashscreen" />
+		<param name="version" value="2.1.0" />
+	</feature>
+	<feature name="Whitelist">
+		<param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+		<param name="onload" value="true" />
+		<param name="id" value="cordova-plugin-whitelist" />
+		<param name="version" value="1.0.0" />
+	</feature>
+	<feature name="Keyboard">
+		<param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
+		<param name="onload" value="true" />
+		<param name="ios-package" value="IonicKeyboard" />
+		<param name="id" value="ionic-plugin-keyboard" />
+		<param name="version" value="1.0.7" />
+	</feature>
+</widget>
