@@ -1,9 +1,22 @@
 <ion-view view-title="Account">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
+    	<label class="item item-input"><span class="input-label">Vorname</span>
+			{{accountData.firstName}}
+		</label>
+    	<label class="item item-input"><span class="input-label">Nachname</span>
+			{{accountData.lastName}}
+		</label>
+    	<label class="item item-input"><span class="input-label">Schule</span>
+			{{accountData.schoolName}}
+		</label>
+    	<label class="item item-input"><span class="input-label">E-Mail</span>
+			{{accountData.email}}
+		</label>
+    	<label class="item item-input"><span class="input-label">Geburtstag</span>
+			{{accountData.birthday}}
+		</label>
+    	<button class="button button-block button-positive" ng-click="logout()">Abmelden</button>
     </ion-list>
   </ion-content>
 </ion-view>

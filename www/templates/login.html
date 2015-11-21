@@ -1,0 +1,23 @@
+<ion-view title="Anmeldung" ng-controller="LoginCtrl"> 
+	<ion-content overflow-scroll="false" scroll="false" class="has-header">
+		<form ng-submit="login(loginData)">
+			<div class="list">
+			  <div class="item" style="text-align: center;">Bitte melden Sie sich an!</div>
+			  <label class="item item-input">
+			    <input required type="email" placeholder="E-Mail" ng-model="loginData.email">
+			  </label>
+			  <label class="item item-input">
+			    <input required type="text" placeholder="Schule" ng-model="loginData.schoolName">
+			  </label>
+			  <label class="item item-input">
+			    <input required type="password" placeholder="Passwort" ng-model="loginData.password">
+			  </label>
+			  <button class="button button-block button-positive" type="submit">Anmelden</button>
+			  <br>
+			  <button class="button button-block button-clear" ng-click="qrLogin()"><img alt="Anmelden" src="img/qr-code.gif"></button>
+			  <br><br>
+			  <button class="button button-block button-clear button-positive" ui-sref="register">Registrieren</button>
+			</div>
+		</form>
+	</ion-content> 
+</ion-view>

@@ -1,0 +1,24 @@
+<ion-view title="Registrierung" ng-controller="RegisterCtrl"> 
+	<ion-content overflow-scroll="false" scroll="false" class="has-header">
+		<form ng-submit="register(registerData)">
+			<div class="list">
+			  <label class="item item-input">
+			    <input required type="text" placeholder="Vorname" ng-model="registerData.firstName">
+			  </label>
+			  <label class="item item-input">
+			    <input required type="text" placeholder="Nachname" ng-model="registerData.lastName">
+			  </label>
+			  <label class="item item-input">
+			    <input required type="text" placeholder="Schule" ng-model="registerData.schoolName">
+			  </label>
+			  <label class="item item-input">
+			    <input required type="email" placeholder="E-Mail Adresse" ng-model="registerData.email">
+			  </label>
+			  <label class="item item-input">
+			    <input required type="password" placeholder="Password" ng-model="registerData.password">
+			  </label>
+			 <button class="button button-block button-positive" type="submit">Registrieren</button>
+			</div>
+		</form>
+	</ion-content> 
+</ion-view>

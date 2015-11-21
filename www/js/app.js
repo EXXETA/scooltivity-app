@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.controllers.dash', 'starter.controllers.login', 
+                           'startet.controllers.register', 'starter.controllers.account', 'starter.services', 
+                           'starter.constants', 'ngResource', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,6 +23,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleDefault();
     }
   });
+  
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -50,12 +53,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.add', {
+      url: '/add',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-add': {
+          templateUrl: 'templates/tab-add.html',
+          controller: 'AddCtrl'
         }
       }
     })
@@ -77,9 +80,44 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'AccountCtrl'
       }
     }
-  });
+  })
+  
+  .state('login', {
+    cache: false,
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })
+  
+  .state('register', {
+    cache: false,
+    url: '/register',
+    templateUrl: 'templates/register.html',
+    controller: 'RegisterCtrl'
+  })
+  
+  ;
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
 
-});
+})
+
+.run(function ($rootScope, $state, $http) {
+  $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {
+    
+    if(window.localStorage['token'] !== undefined && $http.defaults.headers.common['X-AUTH-TOKEN'] === undefined){
+      $http.defaults.headers.common['X-AUTH-TOKEN'] = window.localStorage['token'];
+    }
+    
+    if($http.defaults.headers.common['X-AUTH-TOKEN'] === undefined){
+      if (next.name !== 'login' && next.name !== 'register') {
+        event.preventDefault();
+        $state.go('login');
+        return;
+      }
+    }
+    
+  });
+})
+;
