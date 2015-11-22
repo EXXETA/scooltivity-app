@@ -38,12 +38,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.controllers.
     .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tabs.html',
   })
 
   // Each tab has its own nav history stack:
 
   .state('tab.dash', {
+    cache: false,
+    reload: true,
     url: '/dash',
     views: {
       'tab-dash': {
@@ -62,32 +64,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.controllers.
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
 
   .state('tab.account', {
+    cache: false,
+    reload: true,
     url: '/account',
     views: {
       'tab-account': {
         templateUrl: 'templates/tab-account.html',
         controller: 'AccountCtrl'
       }
-    },
-    reload: true
+    }
   })
   
   .state('login', {
     cache: false,
     url: '/login',
     templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl'
+    controller: 'LoginCtrl',
+    onExit: function(){
+      // This reload is needed for refresh the tab-bar
+      window.location.reload();
+    }
   })
   
   .state('register', {

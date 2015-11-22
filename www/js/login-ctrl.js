@@ -1,6 +1,6 @@
 angular.module('starter.controllers.login', [])
 
-.controller('LoginCtrl', function($scope, AccountService, $ionicPopup, $http, $state, $cordovaBarcodeScanner) {
+.controller('LoginCtrl', function($scope, AccountService, $ionicPopup, $http, $state, $cordovaBarcodeScanner, TokenService) {
   
   $scope.loginData = {};
   
@@ -10,7 +10,8 @@ angular.module('starter.controllers.login', [])
       window.localStorage['token'] = successResult.token;
       window.localStorage['role'] = successResult.role;
       $http.defaults.headers.common['X-AUTH-TOKEN'] = successResult.token;
-      $state.go('tab.dash');
+      $scope.showAddTab = 'TEACHER' === successResult.role;
+      $state.go('tab.dash', {}, {reload: true});
     }, function(errorResult) {
       var message = "Fehler bei der Anmeldung!";
       if(errorResult.headers('X-SCOOLTIVITY-ERROR') !== null){
@@ -38,6 +39,8 @@ angular.module('starter.controllers.login', [])
    
       window.localStorage['token'] = barcodeData.text;
       $http.defaults.headers.common['X-AUTH-TOKEN'] = barcodeData.text;
+      window.localStorage['role'] = TokenService.getPayload(barcodeData.text).type;
+      $scope.showAddTab = 'TEACHER' === window.localStorage['role'];
       $state.go('tab.dash');
       
     }, function(error) {

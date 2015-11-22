@@ -1,17 +1,13 @@
 angular.module('starter.controllers.account', [])
 
-.controller('AccountCtrl', function($scope, $http, $state, AccountService, $ionicPopup) {
+.controller('AccountCtrl', function($scope, $http, $state, AccountService, $ionicPopup, TokenService) {
   
   var token = window.localStorage['token'];
-  var tokenSplitted = token.split('.');
-  if(token.split('.').length != 3){
-    $scope.showError('Account-Daten konnten nicht gelesen werden!');
-  }
   
-  var payload = tokenSplitted[1];
-  
-  $scope.tokenData = JSON.parse(atob(payload));
+  $scope.tokenData = TokenService.getPayload(token);
   console.log("get data for email: " + $scope.tokenData.email);
+  
+  
   AccountService.query({email: $scope.tokenData.email, school: $scope.tokenData.schoolName}, {})
     .$promise.then(function(successResult) {
       $scope.accountData = successResult;
@@ -38,6 +34,7 @@ angular.module('starter.controllers.account', [])
   $scope.logout = function() {
     $http.defaults.headers.common['X-AUTH-TOKEN'] = undefined;
     delete window.localStorage['token'];
+    delete window.localStorage['role'];
     $scope.accountData = {};
     $state.go('login');
   };
