@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+    
+    <meta http-equiv="Content-Security-Policy" content="default-src *; connect-src *;  script-src *">
+    
+    <title>Scooltivity</title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -21,6 +24,7 @@
     
     <!-- QR-Code -->
     <script type="text/javascript" src="lib/qr-code/qrcode.js"></script>
+    <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>

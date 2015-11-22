@@ -79,7 +79,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.controllers.
         templateUrl: 'templates/tab-account.html',
         controller: 'AccountCtrl'
       }
-    }
+    },
+    reload: true
   })
   
   .state('login', {
@@ -105,7 +106,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.controllers.
 
 .run(function ($rootScope, $state, $http) {
   $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {
-    
+
     if(window.localStorage['token'] !== undefined && $http.defaults.headers.common['X-AUTH-TOKEN'] === undefined){
       $http.defaults.headers.common['X-AUTH-TOKEN'] = window.localStorage['token'];
     }
@@ -113,6 +114,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.controllers.
     if($http.defaults.headers.common['X-AUTH-TOKEN'] === undefined){
       if (next.name !== 'login' && next.name !== 'register') {
         event.preventDefault();
+        console.log("Unauthorized access! Redirect from " + next.name + " to login");
         $state.go('login');
         return;
       }

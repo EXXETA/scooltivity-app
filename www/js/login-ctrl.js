@@ -1,10 +1,8 @@
 angular.module('starter.controllers.login', [])
 
-.controller('LoginCtrl', function($scope, AccountService, $ionicPopup, $http, $state, $cordovaBarcodeScanner, $ionicLoading) {
+.controller('LoginCtrl', function($scope, AccountService, $ionicPopup, $http, $state, $cordovaBarcodeScanner) {
   
   $scope.loginData = {};
-  
-  $scope.scanning = true;
   
   $scope.login = function(loginData) {
     AccountService.login({}, loginData)
@@ -25,11 +23,6 @@ angular.module('starter.controllers.login', [])
   
   $scope.qrLogin = function(){
     console.log("Start scanning...");
-    // Workaround for multiple calls
-    if($scope.scanning){
-      console.log("Scanning already in progress");
-//      return;
-    }
     
     $cordovaBarcodeScanner
     .scan()
@@ -38,25 +31,17 @@ angular.module('starter.controllers.login', [])
           "Result: " + barcodeData.text + "\n" +
           "Format: " + barcodeData.format + "\n" +
           "Cancelled: " + barcodeData.cancelled);
-      $scope.scanning = false;
       if(barcodeData.cancelled){
         console.log("Scanning aborted");
         return;
       }
-      
-      var token = JSON.parse(barcodeData.text);
-      window.localStorage['token'] = token;
-      window.localStorage['role'] = token.type;
-      $http.defaults.headers.common['X-AUTH-TOKEN'] = token;
+   
+      window.localStorage['token'] = barcodeData.text;
+      $http.defaults.headers.common['X-AUTH-TOKEN'] = barcodeData.text;
       $state.go('tab.dash');
-
-      $ionicLoading.show({
-          template: 'In Bearbeitung...'
-        });
       
     }, function(error) {
       $scope.showError("Scannen fehlgeschalgen: " + error);
-      $scope.scanning = false;
     });
   };
   

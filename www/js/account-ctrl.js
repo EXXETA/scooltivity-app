@@ -11,6 +11,7 @@ angular.module('starter.controllers.account', [])
   var payload = tokenSplitted[1];
   
   $scope.tokenData = JSON.parse(atob(payload));
+  console.log("get data for email: " + $scope.tokenData.email);
   AccountService.query({email: $scope.tokenData.email, school: $scope.tokenData.schoolName}, {})
     .$promise.then(function(successResult) {
       $scope.accountData = successResult;
@@ -37,6 +38,7 @@ angular.module('starter.controllers.account', [])
   $scope.logout = function() {
     $http.defaults.headers.common['X-AUTH-TOKEN'] = undefined;
     delete window.localStorage['token'];
+    $scope.accountData = {};
     $state.go('login');
   };
   
