@@ -15,24 +15,11 @@ angular.module('starter.controllers.activities', [])
     ActivityService.query({email: $scope.tokenData.email, schoolName: $scope.tokenData.schoolName},{})
     .$promise.then(function(successResult) {
       $scope.activityData = successResult;
+      $scope.$broadcast('scroll.refreshComplete');
     },
     function(errorResult) {
-      // do something on error
-      console.log("error=" + errorResult.status);
-      if(errorResult.status === 404) {            
-        $scope.showError("Benutzerkonto für Email " + $scope.tokenData.email + " und Schule " + $scope.tokenData.schoolName  +" nicht gefunden!");
-      }
-      else if(errorResult.status === 401){
-        $scope.writeError("Session lost (" + errorResult.status +")");
-        event.preventDefault();
-        $state.go('login');
-      }
-      else if(errorResult.status === 0){
-        $scope.showError("Server nicht erreichbar!");
-      }
-      else{
-        $scope.showError("HTTP ERROR (" + errorResult.status +")");
-      };
+      $scope.$broadcast('scroll.refreshComplete');
+      $scope.handleErrorResult(errorResult);
     });
   };
   

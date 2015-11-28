@@ -11,8 +11,10 @@ angular.module('starter.controllers.account', [])
     AccountService.query({email: $scope.tokenData.email, school: $scope.tokenData.schoolName}, {})
       .$promise.then(function(successResult) {
         $scope.accountData = successResult;
+        $scope.$broadcast('scroll.refreshComplete');
       },
       function(errorResult) {
+        $scope.$broadcast('scroll.refreshComplete');
         console.log("error=" + errorResult.status);
         if(errorResult.status === 404) {            
           $scope.showError("Benutzerkonto für Email " + $scope.tokenData.email + " und Schule " + $scope.tokenData.schoolName  +" nicht gefunden!");

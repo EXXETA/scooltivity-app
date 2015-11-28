@@ -17,7 +17,7 @@ angular.module('starter.controllers', [])
       if(errorResult.status === 0){
         $scope.showError("Server nicht erreichbar!");
       } else if(errorResult.status === 409){
-        $scope.showError("Der Schüler ist bereits registriert!");
+        $scope.showError("Der Benutzer ist bereits registriert!");
       } else {
         $scope.showError("Fehler bei der Anmeldung!");
       }
