@@ -53,7 +53,7 @@ angular.module('starter.controllers.activities', [])
               e.preventDefault();
             } else {
               // Store activity
-              $scope.newActivity.schoolName = tokenData.schoolName;
+              $scope.newActivity.schoolName = $scope.tokenData.schoolName;
               ActivityService.save({}, $scope.newActivity)
               .$promise.then(function(successResult) {
                 $scope.activityData.push(successResult);
@@ -71,7 +71,7 @@ angular.module('starter.controllers.activities', [])
 
   
   $scope.subscribe = function(activity){
-    ActivityService.subscribe({activityId: activity.activityId, email: tokenData.email}, {})
+    ActivityService.subscribe({activityId: activity.activityId, email: $scope.tokenData.email}, {})
       .$promise.then(function(successResult) {
         activity.subscribed = true;
     },
@@ -81,7 +81,7 @@ angular.module('starter.controllers.activities', [])
   };
   
   $scope.unsubscribe = function(activity){
-      ActivityService.unsubscribe({activityId: activity.activityId, email: tokenData.email}, {})
+      ActivityService.unsubscribe({activityId: activity.activityId, email: $scope.tokenData.email}, {})
       .$promise.then(function(successResult) {
         activity.subscribed = false;
     },
