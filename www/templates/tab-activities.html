@@ -5,7 +5,7 @@
 	  	<div class="track"><div class="handle"></div></div>
 	  	<span>Nur meine Aktivit&auml;ten</span>
 	  </label>
-	  <button class="button button-positive" ng-click="addActivity()">Aktivit&auml;t hinzuf&uuml;gen</button>
+	  <button ng-if="showAddButton" class="button button-positive" ng-click="addActivity()">Neu Aktivit&auml;t</button>
 	  </div>	
   <ion-content class="padding has-header has-subheader" overflow-scroll="true">
   	<ion-refresher pulling-text="Ziehen zum Aktualisieren..." on-refresh="getActivities()"></ion-refresher>

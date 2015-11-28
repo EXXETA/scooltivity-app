@@ -84,11 +84,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.controllers.
     cache: false,
     url: '/login',
     templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl',
-    onExit: function(){
-      // This reload is needed for refresh the tab-bar
-      window.location.reload();
-    }
+    controller: 'LoginCtrl'
   })
   
   .state('register', {

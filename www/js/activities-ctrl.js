@@ -7,9 +7,8 @@ angular.module('starter.controllers.activities', [])
   $scope.onlyOwnAktivities = false;
   $scope.emailFilter = '';
   
-  
-  
   $scope.getActivities = function(){
+    $scope.showAddButton = 'TEACHER' === window.localStorage['role'];
     $scope.tokenData = TokenService.getPayload(window.localStorage['token']);
     console.log("get data for email: " + $scope.tokenData.email);
     
