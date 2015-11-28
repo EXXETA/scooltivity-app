@@ -4,7 +4,7 @@ angular.module('starter.controllers.account', [])
   
   
   
-  $scoope.getAccountData = function(){
+  $scope.getAccountData = function(){
     $scope.tokenData = TokenService.getPayload(window.localStorage['token']);
     console.log("get data for email: " + $scope.tokenData.email);
     
@@ -49,6 +49,6 @@ angular.module('starter.controllers.account', [])
   };
   
   // get account data on startup
-  $scoope.getAccountData();
+  $scope.getAccountData();
   
 });
