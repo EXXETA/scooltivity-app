@@ -11,7 +11,7 @@ angular.module('starter.controllers.login', [])
       window.localStorage['role'] = successResult.role;
       $http.defaults.headers.common['X-AUTH-TOKEN'] = successResult.token;
       $scope.showAddTab = 'TEACHER' === successResult.role;
-      $state.go('tab.dash', {}, {reload: true});
+      $state.go('tab.activities', {}, {reload: true});
     }, function(errorResult) {
       var message = "Fehler bei der Anmeldung!";
       if(errorResult.headers('X-SCOOLTIVITY-ERROR') !== null){
@@ -41,7 +41,7 @@ angular.module('starter.controllers.login', [])
       $http.defaults.headers.common['X-AUTH-TOKEN'] = barcodeData.text;
       window.localStorage['role'] = TokenService.getPayload(barcodeData.text).type;
       $scope.showAddTab = 'TEACHER' === window.localStorage['role'];
-      $state.go('tab.dash');
+      $state.go('tab.activities');
       
     }, function(error) {
       $scope.showError("Scannen fehlgeschalgen: " + error);

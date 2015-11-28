@@ -5,8 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.controllers.dash', 'starter.controllers.login', 
-                           'startet.controllers.register', 'starter.controllers.account', 'starter.services', 
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.controllers.login', 
+                           'startet.controllers.register', 'starter.controllers.activities', 
+                           'starter.controllers.account', 'starter.services', 
                            'starter.constants', 'ngResource', 'ngCordova'])
 
 .run(function($ionicPlatform) {
@@ -43,27 +44,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.controllers.
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
+  .state('tab.activities', {
     cache: false,
     reload: true,
-    url: '/dash',
+    url: '/activities',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-activities': {
+        templateUrl: 'templates/tab-activities.html',
+        controller: 'ActivitiesCtrl'
       }
     }
   })
 
   .state('tab.add', {
-      url: '/add',
-      views: {
-        'tab-add': {
-          templateUrl: 'templates/tab-add.html',
-          controller: 'AddCtrl'
-        }
+    cache: false,
+    reload: true,
+    url: '/add',
+    views: {
+      'tab-add': {
+        templateUrl: 'templates/tab-add.html',
+        controller: 'AddCtrl'
       }
-    })
+    }
+   })
 
   .state('tab.account', {
     cache: false,
@@ -98,7 +101,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.controllers.
   ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/activities');
 
 })
 

@@ -2,19 +2,18 @@ angular.module('starter.controllers.account', [])
 
 .controller('AccountCtrl', function($scope, $http, $state, AccountService, $ionicPopup, TokenService) {
   
-  var token = window.localStorage['token'];
-  
-  $scope.tokenData = TokenService.getPayload(token);
-  console.log("get data for email: " + $scope.tokenData.email);
   
   
-  AccountService.query({email: $scope.tokenData.email, school: $scope.tokenData.schoolName}, {})
-    .$promise.then(function(successResult) {
-      $scope.accountData = successResult;
-    },
-    function(errorResult) {
-        // do something on error
-      console.log("error=" + errorResult.status);
+  $scoope.getAccountData = function(){
+    $scope.tokenData = TokenService.getPayload(window.localStorage['token']);
+    console.log("get data for email: " + $scope.tokenData.email);
+    
+    AccountService.query({email: $scope.tokenData.email, school: $scope.tokenData.schoolName}, {})
+      .$promise.then(function(successResult) {
+        $scope.accountData = successResult;
+      },
+      function(errorResult) {
+        console.log("error=" + errorResult.status);
         if(errorResult.status === 404) {            
           $scope.showError("Benutzerkonto für Email " + $scope.tokenData.email + " und Schule " + $scope.tokenData.schoolName  +" nicht gefunden!");
         }
@@ -27,9 +26,10 @@ angular.module('starter.controllers.account', [])
           $scope.showError("Server nicht erreichbar!");
         }
         else{
-          $scope.writeError("HTTP ERROR (" + errorResult.status +")");
+          $scope.showError("HTTP ERROR (" + errorResult.status +")");
         };
-    });
+      });
+  };
   
   $scope.logout = function() {
     $http.defaults.headers.common['X-AUTH-TOKEN'] = undefined;
@@ -40,7 +40,6 @@ angular.module('starter.controllers.account', [])
   };
   
 
-  
   $scope.showError = function(error){
     $ionicPopup.alert({
       title : 'Fehler',
@@ -48,5 +47,8 @@ angular.module('starter.controllers.account', [])
       okType : 'button-assertive'
     });
   };
+  
+  // get account data on startup
+  $scoope.getAccountData();
   
 });

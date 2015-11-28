@@ -11,7 +11,7 @@ angular.module('startet.controllers.register', [])
       window.localStorage['token'] = successResult.token;
       window.localStorage['role'] = successResult.role;
       $http.defaults.headers.common['X-AUTH-TOKEN'] = successResult.token;
-      $state.go('tab.dash');
+      $state.go('tab.activities');
     }, function(errorResult) {
       var message = "Fehler bei der Registrierung!";
       if(errorResult.headers('X-SCOOLTIVITY-ERROR') !== null){

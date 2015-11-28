@@ -94,4 +94,42 @@ angular.module('starter.services', [])
   };
 })
 
+.factory('ActivityService', function($resource, SYSTEM){
+  var path = SYSTEM.host + ":" + SYSTEM.port + "/scooltivity/activities";
+  var ActivityService = $resource(path, {}, {
+    'query' : {
+      method : 'GET',
+      timeout : 60000,
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      isArray: true
+    },
+    'save' : {
+      method : 'POST',
+      timeout : 60000,
+      headers : {
+        'Content-Type' : 'application/json'
+      }
+    },
+    'subscribe' : {
+      url : path + "/:activityId/subscriptions/:email",
+      method : 'POST',
+      timeout : 60000,
+      headers : {
+        'Content-Type' : 'application/json'
+      }
+    },
+    'unsubscribe' : {
+      url : path + "/:activityId/subscriptions/:email",
+      method : 'DELETE',
+      timeout : 60000,
+      headers : {
+        'Content-Type' : 'application/json'
+      }
+    }
+  });
+  return ActivityService;
+})
+
 ;

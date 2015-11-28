@@ -13,7 +13,6 @@ angular.module('starter.constants', [])
 .constant('SYSTEM', {
     host : 'https://service.zamo.eu',
     port : 9443
-//  host : 'http://192.168.14.48',
-  //host : 'http://localhost',
-  //port : '8080'
+//  host : 'http://localhost',
+//  port : '8080'
 });

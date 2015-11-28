@@ -1,5 +1,6 @@
 <ion-view view-title="Account">
   <ion-content>
+  	<ion-refresher pulling-text="Ziehen zum Aktualisieren..." on-refresh="getAccountData()"></ion-refresher>
     <ion-list>
     	<label class="item item-input"><span class="input-label">Vorname</span>
 			{{accountData.firstName}}

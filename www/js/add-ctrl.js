@@ -2,6 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('AddCtrl', function($scope, AccountService, $ionicPopup, $http, $state, $ionicPopover) {
   
+  $scope.showContent = 'TEACHER' === window.localStorage['role'];
   $scope.studentData = {};
   
   $scope.add = function(studentData) {

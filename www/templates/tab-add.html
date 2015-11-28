@@ -1,6 +1,6 @@
 <ion-view title="Sch&uuml;ler hinzuf&uuml;gen" ng-controller="AddCtrl"> 
 	<ion-content overflow-scroll="false" scroll="false" class="has-header">
-		<form ng-submit="add(studentData)">
+		<form ng-submit="add(studentData)" ng-if="showContent">
 			<div class="list">
 			  <label class="item item-input">
 			    <input required type="text" placeholder="Vorname" ng-model="studentData.firstName">
@@ -15,10 +15,11 @@
 			    <input required type="email" placeholder="E-Mail Adresse" ng-model="studentData.email">
 			  </label>
 			  <label class="item item-input">
-			    <input required type="date" placeholder="Geburtstag" ng-model="studentData.birthday">
+			    <input type="date" placeholder="Geburtstag" ng-model="studentData.birthday">
 			  </label>
 			 <button class="button button-block button-positive" type="submit">Hinzuf&uuml;gen</button>
 			</div>
 		</form>
+		<div ng-if="showContent != true"><h1 style="text-align: center;">Keine Berechtigung!</h1></div>
 	</ion-content> 
 </ion-view>

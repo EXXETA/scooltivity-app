@@ -3,3 +3,7 @@
 .qr-popup .popup{
 	width: 270px !important;
 }
+
+.textarea-description{
+	height: 100px !important;
+}
