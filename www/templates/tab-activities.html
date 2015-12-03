@@ -1,31 +1,33 @@
 <ion-view view-title="Aktivit&auml;ten">
-	<div class="bar bar-subheader">
-	  <label class="toggle toggle-positive">
-	  	<input type="checkbox" ng-model="onlyOwnActivities">
-	  	<div class="track"><div class="handle"></div></div>
-	  	<span>Nur meine Aktivit&auml;ten</span>
-	  </label>
-	  <button ng-if="showAddButton" class="button button-positive" ng-click="addActivity()">Neu Aktivit&auml;t</button>
-	  </div>	
+  <div class="bar bar-subheader">
+    <label class="toggle toggle-positive">
+      <input type="checkbox" ng-model="onlyOwnActivities">
+      <div class="track"><div class="handle"></div></div>
+      <span>Nur meine Aktivit&auml;ten</span>
+    </label>
+    <button ng-if="showAddButton" class="button button-positive" ng-click="addActivity()">Neu Aktivit&auml;t</button>
+  </div>  
   <ion-content class="padding has-header has-subheader" overflow-scroll="true">
-  	<ion-refresher pulling-text="Ziehen zum Aktualisieren..." on-refresh="getActivities()"></ion-refresher>
-    <div class="card padding" ng-repeat="activity in activityData | orderBy: activity.title | filter: (onlyOwnActivities || undefined) && {subscribed:true}">
-      <div class="item item-divider">
-	      <div class="row row-no-padding">
-		      <div class="col col-80">
-		      	{{activity.title}}
-		      </div>
-		      <div class="col" style="text-align: right;">
-			      <i ng-if="activity.subscribed" class="icon ion-checkmark-round" style="color: blue;" ng-click="unsubscribe(activity)"></i>
-			      <i ng-if="!activity.subscribed" class="icon ion-plus-round" ng-click="subscribe(activity)"></i>
-		      </div>
-	      </div>
-      </div>
-      <div class="item item-body">
-        <div>
-          {{activity.description}}
+    <ion-refresher pulling-text="Ziehen zum Aktualisieren..." on-refresh="getActivities()"></ion-refresher>
+    <ion-list>
+      <ion-item class="card padding" ng-repeat="activity in activityData | orderBy: activity.title | filter: (onlyOwnActivities || undefined) && {subscribed:true}">
+        <div class="item item-divider">
+          <div class="row row-no-padding">
+            <div class="col col-80">
+              {{activity.title}}
+            </div>
+            <div class="col" style="text-align: right;">
+              <i ng-if="activity.subscribed" class="icon ion-checkmark-round" style="color: blue;" ng-click="unsubscribe(activity)"></i>
+              <i ng-if="!activity.subscribed" class="icon ion-plus-round" ng-click="subscribe(activity)"></i>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+        <div class="item item-body">
+          <div>
+            {{activity.description}}
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

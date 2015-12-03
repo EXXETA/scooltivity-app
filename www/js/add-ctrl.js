@@ -46,11 +46,9 @@ angular.module('starter.controllers', [])
   };
   
   $scope.createQrCode = function(text) {
-
     var qr = qrcode(15, 'M');
     qr.addData(text);
     qr.make();
-
     return qr.createImgTag(3, 8);
   };
   

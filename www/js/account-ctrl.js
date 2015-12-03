@@ -17,7 +17,9 @@ angular.module('starter.controllers.account', [])
         $scope.$broadcast('scroll.refreshComplete');
         console.log("error=" + errorResult.status);
         if(errorResult.status === 404) {            
-          $scope.showError("Benutzerkonto für Email " + $scope.tokenData.email + " und Schule " + $scope.tokenData.schoolName  +" nicht gefunden!");
+          $scope.showError("Benutzerkonto für " + $scope.tokenData.email + " und " + $scope.tokenData.schoolName  +" nicht gefunden!");
+          event.preventDefault();
+          $scope.logout();
         }
         else if(errorResult.status === 401){
           $scope.writeError("Session lost (" + errorResult.status +")");

@@ -32,50 +32,6 @@ angular.module('starter.services', [])
   return AccountService;
 })
 
-.service(
-    'LoginService',
-    function($rootScope, $q, $http, USER_ROLES, SYSTEM, $ionicPopover) {
-      
-      var isAuthenticated = false;
-      window.localStorage.removeItem('token');
-      var role = '';
-      
-      showLogin = function(){
-        $rootScope.loginData = {};
-        
-        $ionicPopover.fromTemplateUrl('templates/login.html', {
-          scope: $rootScope
-        }).then(function(popover) {
-          $rootScope.popover = popover;
-          $rootScope.popover.show();
-        });
-    };
-
-      var login = function(email, password) {};
-
-
-
-      var isAuthorized = function(authorizedRoles) {
-        if (!angular.isArray(authorizedRoles)) {
-          authorizedRoles = [ authorizedRoles ];
-        }
-        return (isAuthenticated && authorizedRoles.indexOf(role) !== -1);
-      };
-
-      return {
-        showLogin : showLogin,
-        login : login,
-        logout : logout,
-        isAuthorized : isAuthorized,
-        isAuthenticated : function() {
-          return isAuthenticated;
-        },
-        getRole : function() {
-          return role;
-        }
-      };
-    })
-
 .service('TokenService', function($q){
   
   getPayload = function(token){
