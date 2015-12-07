@@ -11,7 +11,7 @@ angular.module('starter.constants', [])
 })
 
 .constant('SYSTEM', {
-    host : 'https://service.zamo.eu',
+    host : 'https://pimp-my-site.de',
     port : 9443
 //  host : 'http://localhost',
 //  port : '8080'
