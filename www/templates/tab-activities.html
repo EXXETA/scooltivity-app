@@ -1,12 +1,15 @@
 <ion-view view-title="Aktivit&auml;ten">
-  <div class="bar bar-subheader">
+  <ion-header-bar class="bar bar-subheader item-input-inset">
     <label class="toggle toggle-positive">
       <input type="checkbox" ng-model="onlyOwnActivities">
       <div class="track"><div class="handle"></div></div>
-      <span>Nur meine Aktivit&auml;ten</span>
     </label>
-    <button ng-if="showAddButton" class="button button-positive" ng-click="addActivity()">Neu Aktivit&auml;t</button>
-  </div>  
+    <div><span class="padding-5">Nur meine Aktivit&auml;ten</span></div>
+    <h1 class="title"></h1>
+    <div class="buttons">
+    	<button ng-if="showAddButton" class="button button-positive" ng-click="addActivity()">Neu Aktivit&auml;t</button>
+    </div>
+  </ion-header-bar>  
   <ion-content class="padding has-header has-subheader" overflow-scroll="true">
     <ion-refresher pulling-text="Ziehen zum Aktualisieren..." on-refresh="getActivities()"></ion-refresher>
     <ion-list>
